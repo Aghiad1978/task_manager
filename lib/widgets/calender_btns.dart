@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:task_manager/app_color.dart';
 import 'package:task_manager/providers/date_provider.dart';
-import 'package:task_manager/widgets/calendar_dialogue.dart';
+import 'package:task_manager/widgets/dialogues.dart';
 
 class CalenderBtns extends StatelessWidget {
   const CalenderBtns({super.key});

@@ -52,17 +52,15 @@ class _InfiniteListViewState extends State<InfiniteListView> {
         scrollDirection:Axis.horizontal,
         itemBuilder:(context, index) {
           DateTime date=today.add( Duration(days:index-_middle));
-          return Container(
-           
-            child: Card(
-              color: index-_middle==0?AppColor.choosenDateColor:Colors.white,
-              child: Column(children: [
-              Text(days[date.weekday],style: TextStyle(color: AppColor.dayNameColor,fontWeight: FontWeight.bold,letterSpacing: 1.5),),
-              Divider(color: AppColor.dayNameColor,),
-              Text("${date.day}/${date.month}",style: TextStyle(color: index-_middle==0?Colors.white:Colors.black,fontWeight: FontWeight.bold,letterSpacing: 1.5),),
-              Text("${date.year}",style: TextStyle(color: index-_middle==0?Colors.white:Colors.black,fontWeight: FontWeight.bold,letterSpacing: 1.25))
-                        ],),
-            ));
+          return Card(
+            color: index-_middle==0?AppColor.choosenDateColor:Colors.white,
+            child: Column(children: [
+            Text(days[date.weekday],style: TextStyle(color: AppColor.dayNameColor,fontWeight: FontWeight.bold,letterSpacing: 1.5),),
+            Divider(color: AppColor.dayNameColor,),
+            Text("${date.day}/${date.month}",style: TextStyle(color: index-_middle==0?Colors.white:Colors.black,fontWeight: FontWeight.bold,letterSpacing: 1.5),),
+            Text("${date.year}",style: TextStyle(color: index-_middle==0?Colors.white:Colors.black,fontWeight: FontWeight.bold,letterSpacing: 1.25))
+                      ],),
+          );
         }, ),
     );
   }
