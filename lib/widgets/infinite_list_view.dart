@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/app_color.dart';
 
 class InfiniteListView extends StatefulWidget {
   final DateTime chooseDate;
@@ -13,6 +14,7 @@ class _InfiniteListViewState extends State<InfiniteListView> {
   final int maxItems = 200000;
   final ScrollController _controller = ScrollController();
   final days=["","Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+
   @override
   void initState() {
     super.initState();
@@ -21,16 +23,7 @@ class _InfiniteListViewState extends State<InfiniteListView> {
     });
   }
 
-  @override
-  void didUpdateWidget(covariant InfiniteListView oldWidget) {
-    super.didUpdateWidget(oldWidget);
 
-    if (oldWidget.chooseDate != widget.chooseDate) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        _jumpToDate();
-      });
-    }
-  }
 
   void _jumpToDate() {
     final double _initialPosition = _middle * 72 - 160;
@@ -38,11 +31,20 @@ class _InfiniteListViewState extends State<InfiniteListView> {
       _controller.jumpTo(_initialPosition);
     }
   }
+  @override
+  void didUpdateWidget(InfiniteListView oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.chooseDate != oldWidget.chooseDate) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _jumpToDate();
+      });
+    }
+  }
     @override
   Widget build(BuildContext context) {
     DateTime today=widget.chooseDate;
-    return Container(
-      height: 65,
+    return SizedBox(
+      height: 85,
       child: ListView.builder(
         itemCount: maxItems,
         controller: _controller,
@@ -51,18 +53,16 @@ class _InfiniteListViewState extends State<InfiniteListView> {
         itemBuilder:(context, index) {
           DateTime date=today.add( Duration(days:index-_middle));
           return Container(
-           decoration: BoxDecoration(
-            border: Border.all(
-                color:index-_middle==0?Colors.red :Colors.transparent, // border color
-                width: 2.0,         // border thickness
-    ),
-    borderRadius: BorderRadius.circular(2), // optional: rounded corners
-  ),
-            child: Column(children: [
-            Text(days[date.weekday],style: TextStyle(color: Colors.red),),
-            Text("${date.day}/${date.month}"),
-            Text("${date.year}")
-          ],));
+           
+            child: Card(
+              color: index-_middle==0?AppColor.choosenDateColor:Colors.white,
+              child: Column(children: [
+              Text(days[date.weekday],style: TextStyle(color: AppColor.dayNameColor,fontWeight: FontWeight.bold,letterSpacing: 1.5),),
+              Divider(color: AppColor.dayNameColor,),
+              Text("${date.day}/${date.month}",style: TextStyle(color: index-_middle==0?Colors.white:Colors.black,fontWeight: FontWeight.bold,letterSpacing: 1.5),),
+              Text("${date.year}",style: TextStyle(color: index-_middle==0?Colors.white:Colors.black,fontWeight: FontWeight.bold,letterSpacing: 1.25))
+                        ],),
+            ));
         }, ),
     );
   }
