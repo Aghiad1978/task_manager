@@ -27,14 +27,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColor.backGroundColor,
-        body: Container(child: Column(children: [
+        body: Column(children: [
           SizedBox(height:40),
           Consumer<DateProvider>(builder:(context, provider, child) {
           return  InfiniteListView(chooseDate: provider.choosenDate)  ;
           },),
            
           CalenderBtns(),
-        ],),),
+        ],),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           addTaskDialogue(context);

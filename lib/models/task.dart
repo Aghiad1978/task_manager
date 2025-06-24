@@ -1,5 +1,5 @@
   enum Measure{
-    time,count
+    nothing,counts,minutes,steps,
   }
 class Task {
 

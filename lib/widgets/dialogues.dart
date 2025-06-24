@@ -12,20 +12,23 @@ Future<DateTime?> getDateFromCalendar(BuildContext context)async{
 void addTaskDialogue(BuildContext context){
   showDialog(context: context, builder: (context) {
     return  Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(25),
-        ),
         child: Container(
           height: MediaQuery.of(context).size.height/1.5,
-          color: AppColor.dayNameColor,
+          color: Colors.white,
           child: Column(
             children: [
-                Text("New Task",style: TextStyle(fontSize: 24, color: Colors.white),),
-                Divider(),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  color: AppColor.dayNameColor,
+                  child: Text("New Task",textAlign: TextAlign.center,
+                  style: 
+                  TextStyle(
+                    fontSize: 24,
+                    color: Colors.white,
+                    ),),
+                ),
                 NewTaskForm()
-            ]
-            
-            
+            ]     
           ),
         ),
       );
